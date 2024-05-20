@@ -1,14 +1,15 @@
-import { Stack, Link, useLocalSearchParams } from 'expo-router'
-import {Text} from 'react-native'
-
+import { useLocalSearchParams, Stack } from 'expo-router';
+import { Text, View } from 'react-native';
 
 function idScreen() {
-    let {id}=useLocalSearchParams()
-
+  let { id } = useLocalSearchParams();
 
   return (
-    <Stack.Screen options={{title:"Usuario: " + {id}}}></Stack.Screen>
-  )
+    <View>
+       <Stack.Screen options={{ title: 'Id usuario:' + id }}></Stack.Screen>
+       <Text>{`ID de Usuario: ${id}`}</Text>
+   </View>
+  );
 }
 
-export default idScreen
+export default idScreen;
