@@ -20,7 +20,8 @@ function Login() {
   
       if (usuarioEncontrado) {
             alert('Usuario logeado');
-            navigation.navigate('Logeado', { username: usuarioEncontrado.nombre });
+            console.log("username:", usuarioEncontrado.nombre)
+            navigation.navigate('(tabs)', { username: usuarioEncontrado.nombre });
       } else {
         if (!correoValido) {
             alert("Debe incluir '@' en el correo electrónico");

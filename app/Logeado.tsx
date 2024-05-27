@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 function Logeado({ route }) {
     const { username } = route.params;
-
+    
     return (
         <View style={styles.container}>
             <Text style={styles.titulo}>
