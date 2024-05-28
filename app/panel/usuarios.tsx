@@ -1,8 +1,8 @@
 import {Text, View} from 'react-native'
 import { useLocalSearchParams, Stack, Link } from 'expo-router';
-import { lista_usuarios } from './lista_usuarios';
+import { usuarios } from './lista_usuarios';
 
-console.log(lista_usuarios)
+console.log(usuarios)
 
 function hola() {
   return (
