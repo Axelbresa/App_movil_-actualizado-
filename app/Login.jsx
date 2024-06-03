@@ -25,8 +25,8 @@ function Login() {
       } else {
         if (!correoValido) {
             alert("Debe incluir '@' en el correo electrónico");
-        } if (password.length<8) {
-            alert('La contraseña debe ser como minimo de 8 caracteres');
+        } if (password.length<=5) {
+            alert('La contraseña debe ser como minimo de 5 caracteres');
         } if (username=="" || correo=="" || password=="") {
             alert('No debe estar vacio ningun campo');
         } 
@@ -100,9 +100,7 @@ const styles = StyleSheet.create({
     height: "40%",
     width: "100%",
     backgroundColor: "white",
-    // position: "absolute",
     marginTop:2,
-    // borderTopEndRadius: 50,
   },
   icon: {
     marginHorizontal: 10,

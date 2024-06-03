@@ -1,5 +1,5 @@
 import {Text, View} from 'react-native'
-import { useLocalSearchParams, Stack, Link } from 'expo-router';
+import {  Link } from 'expo-router';
 import { usuarios } from './lista_usuarios';
 
 console.log(usuarios)

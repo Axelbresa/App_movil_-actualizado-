@@ -71,8 +71,10 @@ const styles = StyleSheet.create({
   },
   taskItem: {
     padding: 10,
+    margin:5, 
+    backgroundColor:"yellow",
     borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     width: '100%',
   },
 });
