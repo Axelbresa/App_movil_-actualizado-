@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import {usuarios} from "./panel/lista_usuarios"
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { usuarios } from './panel/lista_usuarios';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons'; 
 import CustomButton from './panel/customButton';
@@ -12,32 +12,42 @@ function Register() {
   const [password, setPassword] = React.useState('');
   const [confirmarPassword, setConfirmarPassword] = React.useState('');
 
-  const handleLogin = () => {
-
+  const handleRegister = () => {
     const correoValido = correo.includes('@');
     const usuarioEncontrado = usuarios.find(
-        user => user.nombre === username  && user.correo === correo && user.contraseña === password
-      );
-  
-      if (usuarioEncontrado) {
-            alert('Usuario logeado');
-            navigation.navigate('Logeado', { username: usuarioEncontrado.nombre });
-      } else {
-        if (!correoValido) {
-            alert("Debe incluir '@' en el correo electrónico");
-        } if (password.length<8) {
-            alert('La contraseña debe ser como minimo de 8 caracteres');
-        } if (username=="" || correo=="" || password=="") {
-            alert('No debe estar vacio ningun campo');
-        } 
+      user => user.correo === correo
+    );
+  console.log(correo)
+    if (usuarioEncontrado) {
+      alert('El usuario ya está registrado.');
+      return;
+    }
 
-      }
+    if (!correoValido) {
+      alert("Debe incluir '@' en el correo electrónico");
+    } else if (password.length < 4) {
+      alert('La contraseña debe ser como mínimo de 5 caracteres');
+    } else if (username === '' || correo === '' || password === '' || confirmarPassword === '') {
+      alert( 'No debe estar vacío ningún campo');
+    } else if (password !== confirmarPassword) {
+      alert('Las contraseñas no coinciden');
+    } else {
+      const newUser = {
+        id: usuarios.length + 1,
+        nombre: username,
+        correo: correo,
+        contraseña: password,
+      };
+      usuarios.push(newUser);
+      Alert.alert('Éxito', 'Usuario registrado con éxito');
+      // navigation.navigate('Logeado', { username: newUser.nombre });
+    }
   };
 
   return (
     <View style={styles.container}>
-    <Text style={styles.title}>Login:</Text>
-    <Text style={styles.label}>Nombre de usuario:</Text>
+      <Text style={styles.title}>Register:</Text>
+      <Text style={styles.label}>Nombre de usuario:</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="user" size={24} color="black" style={styles.icon} />
         <TextInput
@@ -48,7 +58,7 @@ function Register() {
         />
       </View>
 
-    <Text style={styles.label}>Correo:</Text>
+      <Text style={styles.label}>Correo:</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="envelope" size={24} color="black" style={styles.icon} />
         <TextInput
@@ -59,7 +69,7 @@ function Register() {
         />
       </View>
 
-    <Text style={styles.label}>Password:</Text>
+      <Text style={styles.label}>Password:</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="lock" size={24} color="black" style={styles.icon} />
         <TextInput
@@ -70,6 +80,7 @@ function Register() {
           placeholder="Contraseña"
         />
       </View>
+
       <Text style={styles.label}>Confirmar password:</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="lock" size={24} color="black" style={styles.icon} />
@@ -78,10 +89,11 @@ function Register() {
           value={confirmarPassword}
           onChangeText={setConfirmarPassword}
           secureTextEntry={true}
-          placeholder="Contraseña"
+          placeholder="Confirmar contraseña"
         />
       </View>
-        <CustomButton title="Iniciar sesión" onPress={handleLogin} />
+
+      <CustomButton title="Registrar" onPress={handleRegister} />
       <View style={styles.franja}></View>
     </View>
   );
@@ -93,27 +105,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'purple', // Fondo claro para el contenedor
+    backgroundColor: 'purple',
   },
   title: {
-    color:"white",
-    fontSize:40,
-    marginBottom:20
+    color: "white",
+    fontSize: 40,
+    marginBottom: 20,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    backgroundColor: '#f0f0f0', // Fondo claro para los campos de entrada
-    borderRadius: 50, // Bordes redondeados
-  },  
-  franja:{
-    height: "40%",
+    backgroundColor: '#f0f0f0',
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: 'gray',
+  },
+  franja: {
+    height: "30%",
     width: "100%",
     backgroundColor: "white",
-    // position: "absolute",
-    marginTop:2,
-    // borderTopEndRadius: 50,
+    marginTop: 2,
   },
   icon: {
     marginHorizontal: 10,
@@ -123,8 +135,8 @@ const styles = StyleSheet.create({
     height: 40,
     paddingHorizontal: 10,
   },
-  label:{
-    color:"white",
+  label: {
+    color: "white",
   },
 });
 

@@ -5,3 +5,5 @@ export const usuarios = [
     { id: 4, nombre: 'Maicol', correo: 'Maicol@gmail.com', contraseña: '12345678' },
     { id: 5, nombre: 'Mauri', correo: 'Mauri@gmail.com', contraseña: '12345678' },
   ];
+
+console.log(usuarios)
