@@ -15,6 +15,10 @@ const ListaTarea = () => {
     navigation.navigate('updateTask', { taskId: id, actualizarListaTareas });
   };
 
+  const verTarea = (id) => {
+    navigation.navigate('verTask', { taskId: id });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Lista de tareas</Text>
@@ -25,9 +29,9 @@ const ListaTarea = () => {
             <Text style={styles.taskTitle}>{item.titulo}</Text>
             <Text style={styles.taskInfo}>Autor: {item.autor}</Text>
             <Text style={styles.taskInfo}>Fecha: {item.fecha}</Text>
-            {/* <TouchableOpacity style={styles.button} onPress={() => verTarea(item.id)}>
+            <TouchableOpacity style={styles.button} onPress={() => verTarea(item.id)}>
               <Text style={styles.buttonText}>Ver tarea</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.editButton]} onPress={() => editarTarea(item.id, actualizarListaTareas)}>
               <Text style={styles.buttonText}>Editar</Text>
             </TouchableOpacity>
