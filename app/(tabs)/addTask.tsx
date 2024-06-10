@@ -28,7 +28,7 @@ function AddTask() {
       setAutor('');
     } catch (error) {
       console.error('Error al agregar la tarea:', error);
-      Alert.alert('Error', 'No se pudo agregar la tarea. Por favor, inténtalo de nuevo.');
+      alert( 'No se pudo agregar la tarea. Por favor, inténtalo de nuevo.');
     }
   };
 

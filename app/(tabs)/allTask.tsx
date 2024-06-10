@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Importa useNavigation
 import taskData from "./task.json";
 
 const ListaTarea = () => {
   const [tasks, setTasks] = useState(taskData);
+  const navigation = useNavigation(); // Obtiene la navegación
+
+  const actualizarListaTareas = (nuevaListaTareas) => {
+    setTasks(nuevaListaTareas);
+  };
+
+  const editarTarea = (id, actualizarListaTareas) => {
+    navigation.navigate('updateTask', { taskId: id, actualizarListaTareas });
+  };
 
   return (
     <View style={styles.container}>
@@ -15,10 +25,10 @@ const ListaTarea = () => {
             <Text style={styles.taskTitle}>{item.titulo}</Text>
             <Text style={styles.taskInfo}>Autor: {item.autor}</Text>
             <Text style={styles.taskInfo}>Fecha: {item.fecha}</Text>
-            <TouchableOpacity style={styles.button} onPress={() => verTarea(item.id)}>
+            {/* <TouchableOpacity style={styles.button} onPress={() => verTarea(item.id)}>
               <Text style={styles.buttonText}>Ver tarea</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, styles.editButton]} onPress={() => editarTarea(item.id)}>
+            </TouchableOpacity> */}
+            <TouchableOpacity style={[styles.button, styles.editButton]} onPress={() => editarTarea(item.id, actualizarListaTareas)}>
               <Text style={styles.buttonText}>Editar</Text>
             </TouchableOpacity>
           </TouchableOpacity>
