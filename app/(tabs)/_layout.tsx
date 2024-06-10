@@ -14,15 +14,15 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
+        name="allTask"
         options={{
-          title: 'Home',
+          title: 'allTask',
         }}
       />
       <Tabs.Screen
-        name="listaTask"
+        name="addTask"
         options={{
-          title: 'Explore',
+          title: 'addTask',
         }}
       />
     </Tabs>

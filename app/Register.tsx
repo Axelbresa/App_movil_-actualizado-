@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import { usuarios } from './panel/lista_usuarios';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons'; 
@@ -39,7 +39,7 @@ function Register() {
         contraseña: password,
       };
       usuarios.push(newUser);
-      Alert.alert('Éxito', 'Usuario registrado con éxito');
+      alert('Usuario registrado con éxito');
       // navigation.navigate('Logeado', { username: newUser.nombre });
     }
   };

@@ -1,13 +1,36 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import json from "./task.json";
 
 function AddTask() {
-    const addTask = () => {
-        // if (task) {
-        //   setTaskList([...taskList, { id: Date.now().toString(), text: task }]);
-        //   setTask('');
-        // }
-      };
+  const [titulo, setTitulo] = React.useState('');
+  const [Task, setTask] = React.useState('');
+  const [fecha, setFecha] = React.useState('');
+  const [autor, setAutor] = React.useState('');
+
+  const addTask = async () => {
+    const newTask = {
+      id: json.length > 0 ? json[json.length - 1].id + 1 : 1,
+      titulo: titulo,
+      descripcion: Task,
+      autor: autor,
+      fecha: fecha,
+    };
+
+    try {
+      json.push(newTask); // Agregar la nueva tarea al arreglo json
+      console.log('Tarea agregada correctamente:', newTask);
+
+      // Limpiar los campos de entrada después de agregar la tarea
+      setTitulo('');
+      setTask('');
+      setFecha('');
+      setAutor('');
+    } catch (error) {
+      console.error('Error al agregar la tarea:', error);
+      Alert.alert('Error', 'No se pudo agregar la tarea. Por favor, inténtalo de nuevo.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -17,6 +40,8 @@ function AddTask() {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          value={titulo}
+          onChangeText={setTitulo}
           placeholder="Ingrese el titulo"
         />
       </View>
@@ -25,6 +50,8 @@ function AddTask() {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          value={Task}
+          onChangeText={setTask}
           placeholder="Ingrese la tarea"
         />
       </View>
@@ -34,6 +61,8 @@ function AddTask() {
         <TextInput
           style={styles.input}
           placeholder="Ingrese la fecha de la tarea"
+          onChangeText={setFecha}
+          value={fecha}
         />
       </View>
 
@@ -42,13 +71,14 @@ function AddTask() {
         <TextInput
           style={styles.input}
           placeholder="Ingrese el nombre del autor"
+          onChangeText={setAutor}
+          value={autor}
         />
       </View>
 
       <TouchableOpacity style={styles.button} onPress={addTask}>
         <Text style={styles.buttonText}>Add Task</Text>
       </TouchableOpacity>
-
     </View>
   );
 }
@@ -60,9 +90,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 18,
     backgroundColor: 'purple',
-    borderWidth: 2, // Agregar borde
-    borderColor: 'white', // Color del borde
-    borderRadius: 10, // Opcional: bordes redondeados para el formulario
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 10,
     margin: 100,
   },
   title: {
@@ -76,11 +106,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#f0f0f0',
     borderRadius: 50,
-    borderWidth: 1, // Agregar borde a los campos de entrada
-    borderColor: 'gray', // Color del borde de los campos de entrada
-  },
-  icon: {
-    marginHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
   },
   input: {
     flex: 1,

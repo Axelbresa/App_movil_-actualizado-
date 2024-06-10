@@ -1,0 +1,39 @@
+
+[
+    {
+      "id": 1,
+      "titulo": "Completar informe de ventas",
+      "descripcion": "Redactar informe detallado sobre las ventas del último trimestre.",
+      "autor": "Juan Pérez",
+      "fecha": "2024-06-09"
+    },
+    {
+      "id": 2,
+      "titulo": "Reunión con el equipo de marketing",
+      "descripcion": "Organizar una reunión para discutir estrategias de marketing.",
+      "autor": "María Gómez",
+      "fecha": "2024-06-10"
+    },
+    {
+      "id": 3,
+      "titulo": "Actualizar sitio web",
+      "descripcion": "Agregar nuevas funcionalidades al sitio web principal.",
+      "autor": "Luis Rodríguez",
+      "fecha": "2024-06-12"
+    },
+    {
+      "id": 4,
+      "titulo": "Preparar presentación para el cliente",
+      "descripcion": "Crear una presentación sobre los servicios ofrecidos.",
+      "autor": "Ana Martínez",
+      "fecha": "2024-06-15"
+    },
+    {
+      "id": 5,
+      "titulo": "Enviar propuesta de proyecto",
+      "descripcion": "Enviar la propuesta de proyecto al cliente para su revisión.",
+      "autor": "Pedro Sánchez",
+      "fecha": "2024-06-20"
+    }
+  ]
+  

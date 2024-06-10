@@ -1,39 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import taskData from "./task.json";
 
 const ListaTarea = () => {
-  const [task, setTask] = useState('');
-  const [taskList, setTaskList] = useState([]);
-
-  const addTask = () => {
-    if (task) {
-      setTaskList([...taskList, { id: Date.now().toString(), text: task }]);
-      setTask('');
-    }
-  };
-
-  const renderItem = ({ item }) => (
-    <View style={styles.taskItem}>
-      <Text>{item.text}</Text>
-    </View>
-  );
+  const [tasks, setTasks] = useState(taskData);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Lista de tareas</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Agrega una tarea"
-        value={task}
-        onChangeText={setTask}
-      />
-      <TouchableOpacity style={styles.button} onPress={addTask}>
-        <Text style={styles.buttonText}>Add Task</Text>
-      </TouchableOpacity>
       <FlatList
-        data={taskList}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
+        data={tasks}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.taskItem}>
+            <Text style={styles.taskTitle}>{item.titulo}</Text>
+            <Text style={styles.taskInfo}>Autor: {item.autor}</Text>
+            <Text style={styles.taskInfo}>Fecha: {item.fecha}</Text>
+            <TouchableOpacity style={styles.button} onPress={() => verTarea(item.id)}>
+              <Text style={styles.buttonText}>Ver tarea</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.editButton]} onPress={() => editarTarea(item.id)}>
+              <Text style={styles.buttonText}>Editar</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
@@ -43,39 +33,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 10,
+    fontWeight: 'bold',
     marginBottom: 10,
-    width: '100%',
+  },
+  taskItem: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 10,
+    borderRadius: 5,
+  },
+  taskTitle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 5,
+  },
+  taskInfo: {
+    fontSize: 16,
+    marginBottom: 3,
   },
   button: {
     backgroundColor: '#007bff',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+    marginTop: 5,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    textAlign: 'center',
   },
-  taskItem: {
-    padding: 10,
-    margin:5, 
-    backgroundColor:"yellow",
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 2,
-    width: '100%',
+  editButton: {
+    backgroundColor: '#28a745', // Cambiar el color del botón de editar
   },
 });
 
