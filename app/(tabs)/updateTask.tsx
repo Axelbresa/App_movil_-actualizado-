@@ -20,6 +20,7 @@ function UpdateTask() {
     const fetchTaskDetails = async () => {
       try {
         console.log(taskId)
+        console.log(actualizarListaTareas)
         console.log(alltask)
       } catch (error) {
         console.error('Error al obtener los detalles de la tarea:', error);
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 10,
-    margin: 100,
+    margin: 90,
   },
   title: {
     color: "white",

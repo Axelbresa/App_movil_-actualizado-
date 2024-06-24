@@ -14,6 +14,12 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
+        name="home"
+        options={{
+          title: 'home',
+        }}
+      />
+      <Tabs.Screen
         name="allTask"
         options={{
           title: 'allTask',

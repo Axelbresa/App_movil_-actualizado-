@@ -13,4 +13,4 @@ export const tareas=[
   { id: 2, titulo:"Cena", tarea:"Para la cena voy a ordenar algo de comida rapida a las 8:00 PM", fecha:"20/06/2024"},
 ]
 
-console.log(tareas)
+// console.log(tareas)

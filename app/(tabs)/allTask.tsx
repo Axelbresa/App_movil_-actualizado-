@@ -8,7 +8,7 @@ const ListaTarea = () => {
   const navigation = useNavigation(); // Obtiene la navegación
 
   const actualizarListaTareas = (nuevaListaTareas) => {
-    setTasks(nuevaListaTareas);
+    setTasks(nuevaListaTareas)
   };
 
   const editarTarea = (id, actualizarListaTareas) => {
